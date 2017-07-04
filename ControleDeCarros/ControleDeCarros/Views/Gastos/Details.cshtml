@@ -1,0 +1,50 @@
+﻿@model ControleDeCarros.Models.Gastos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Gastos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubTiposGastos.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubTiposGastos.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Veiculos.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Veiculos.Nome)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
