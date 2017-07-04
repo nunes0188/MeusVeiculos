@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="VeiculosSet" EntityType="Model1.Store.VeiculosSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CategoriasSet" EntityType="Model1.Store.CategoriasSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MarcasSet" EntityType="Model1.Store.MarcasSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GastosSet" EntityType="Model1.Store.GastosSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SubTiposGastosSet" EntityType="Model1.Store.SubTiposGastosSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TiposGastosSet" EntityType="Model1.Store.TiposGastosSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="TiposGastosSubTiposGastos" Association="Model1.Store.TiposGastosSubTiposGastos">
+      <End Role="TiposGastos" EntitySet="TiposGastosSet" />
+      <End Role="SubTiposGastos" EntitySet="SubTiposGastosSet" />
+    </AssociationSet>
+    <AssociationSet Name="GastosSubTiposGastos" Association="Model1.Store.GastosSubTiposGastos">
+      <End Role="Gastos" EntitySet="GastosSet" />
+      <End Role="SubTiposGastos" EntitySet="SubTiposGastosSet" />
+    </AssociationSet>
+    <AssociationSet Name="VeiculosGastos" Association="Model1.Store.VeiculosGastos">
+      <End Role="Veiculos" EntitySet="VeiculosSet" />
+      <End Role="Gastos" EntitySet="GastosSet" />
+    </AssociationSet>
+    <AssociationSet Name="VeiculosCategorias" Association="Model1.Store.VeiculosCategorias">
+      <End Role="Veiculos" EntitySet="VeiculosSet" />
+      <End Role="Categorias" EntitySet="CategoriasSet" />
+    </AssociationSet>
+    <AssociationSet Name="MarcasVeiculos" Association="Model1.Store.MarcasVeiculos">
+      <End Role="Marcas" EntitySet="MarcasSet" />
+      <End Role="Veiculos" EntitySet="VeiculosSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="VeiculosSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Modelo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AnoFab" Type="int" Nullable="false" />
+    <Property Name="AnoMod" Type="int" Nullable="false" />
+    <Property Name="Motor" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Cor" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ValorPago" Type="float" Nullable="false" />
+    <Property Name="Financiado" Type="bit" Nullable="false" />
+    <Property Name="CategoriasId" Type="int" Nullable="false" />
+    <Property Name="MarcasId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CategoriasSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descricao" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MarcasSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descricao" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GastosSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Valor" Type="float" Nullable="false" />
+    <Property Name="Data" Type="datetime" Nullable="false" />
+    <Property Name="SubTiposGastosId" Type="int" Nullable="false" />
+    <Property Name="VeiculosId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubTiposGastosSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descricao" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TiposGastosId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TiposGastosSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descricao" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="TiposGastosSubTiposGastos">
+    <End Role="TiposGastos" Type="Model1.Store.TiposGastosSet" Multiplicity="1" />
+    <End Role="SubTiposGastos" Type="Model1.Store.SubTiposGastosSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TiposGastos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubTiposGastos">
+        <PropertyRef Name="TiposGastosId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GastosSubTiposGastos">
+    <End Role="Gastos" Type="Model1.Store.GastosSet" Multiplicity="*" />
+    <End Role="SubTiposGastos" Type="Model1.Store.SubTiposGastosSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="SubTiposGastos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Gastos">
+        <PropertyRef Name="SubTiposGastosId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VeiculosGastos">
+    <End Role="Veiculos" Type="Model1.Store.VeiculosSet" Multiplicity="1" />
+    <End Role="Gastos" Type="Model1.Store.GastosSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Veiculos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Gastos">
+        <PropertyRef Name="VeiculosId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VeiculosCategorias">
+    <End Role="Veiculos" Type="Model1.Store.VeiculosSet" Multiplicity="*" />
+    <End Role="Categorias" Type="Model1.Store.CategoriasSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Categorias">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Veiculos">
+        <PropertyRef Name="CategoriasId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MarcasVeiculos">
+    <End Role="Marcas" Type="Model1.Store.MarcasSet" Multiplicity="1" />
+    <End Role="Veiculos" Type="Model1.Store.VeiculosSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Marcas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Veiculos">
+        <PropertyRef Name="MarcasId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="VeiculosSet" EntityType="Model1.Veiculos" />
+          <EntitySet Name="CategoriasSet" EntityType="Model1.Categorias" />
+          <EntitySet Name="MarcasSet" EntityType="Model1.Marcas" />
+          <EntitySet Name="GastosSet" EntityType="Model1.Gastos" />
+          <EntitySet Name="SubTiposGastosSet" EntityType="Model1.SubTiposGastos" />
+          <EntitySet Name="TiposGastosSet" EntityType="Model1.TiposGastos" />
+          <AssociationSet Name="TiposGastosSubTiposGastos" Association="Model1.TiposGastosSubTiposGastos">
+            <End Role="TiposGastos" EntitySet="TiposGastosSet" />
+            <End Role="SubTiposGastos" EntitySet="SubTiposGastosSet" />
+          </AssociationSet>
+          <AssociationSet Name="GastosSubTiposGastos" Association="Model1.GastosSubTiposGastos">
+            <End Role="Gastos" EntitySet="GastosSet" />
+            <End Role="SubTiposGastos" EntitySet="SubTiposGastosSet" />
+          </AssociationSet>
+          <AssociationSet Name="VeiculosGastos" Association="Model1.VeiculosGastos">
+            <End Role="Veiculos" EntitySet="VeiculosSet" />
+            <End Role="Gastos" EntitySet="GastosSet" />
+          </AssociationSet>
+          <AssociationSet Name="VeiculosCategorias" Association="Model1.VeiculosCategorias">
+            <End Role="Veiculos" EntitySet="VeiculosSet" />
+            <End Role="Categorias" EntitySet="CategoriasSet" />
+          </AssociationSet>
+          <AssociationSet Name="MarcasVeiculos" Association="Model1.MarcasVeiculos">
+            <End Role="Marcas" EntitySet="MarcasSet" />
+            <End Role="Veiculos" EntitySet="VeiculosSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Veiculos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" />
+          <Property Name="Modelo" Type="String" Nullable="false" />
+          <Property Name="AnoFab" Type="Int32" Nullable="false" />
+          <Property Name="AnoMod" Type="Int32" Nullable="false" />
+          <Property Name="Motor" Type="String" Nullable="false" />
+          <Property Name="Cor" Type="String" Nullable="false" />
+          <Property Name="ValorPago" Type="Double" Nullable="false" />
+          <Property Name="Financiado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Gastos" Relationship="Model1.VeiculosGastos" FromRole="Veiculos" ToRole="Gastos" />
+          <NavigationProperty Name="Categorias" Relationship="Model1.VeiculosCategorias" FromRole="Veiculos" ToRole="Categorias" />
+          <Property Name="CategoriasId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Marcas" Relationship="Model1.MarcasVeiculos" FromRole="Veiculos" ToRole="Marcas" />
+          <Property Name="MarcasId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categorias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="String" Nullable="false" />
+          <NavigationProperty Name="Veiculos" Relationship="Model1.VeiculosCategorias" FromRole="Categorias" ToRole="Veiculos" />
+        </EntityType>
+        <EntityType Name="Marcas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="String" Nullable="false" />
+          <NavigationProperty Name="Veiculos" Relationship="Model1.MarcasVeiculos" FromRole="Marcas" ToRole="Veiculos" />
+        </EntityType>
+        <EntityType Name="Gastos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Valor" Type="Double" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="SubTiposGastos" Relationship="Model1.GastosSubTiposGastos" FromRole="Gastos" ToRole="SubTiposGastos" />
+          <Property Name="SubTiposGastosId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Veiculos" Relationship="Model1.VeiculosGastos" FromRole="Gastos" ToRole="Veiculos" />
+          <Property Name="VeiculosId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubTiposGastos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="String" Nullable="false" />
+          <NavigationProperty Name="TiposGastos" Relationship="Model1.TiposGastosSubTiposGastos" FromRole="SubTiposGastos" ToRole="TiposGastos" />
+          <Property Name="TiposGastosId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Gastos" Relationship="Model1.GastosSubTiposGastos" FromRole="SubTiposGastos" ToRole="Gastos" />
+        </EntityType>
+        <EntityType Name="TiposGastos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="String" Nullable="false" />
+          <NavigationProperty Name="SubTiposGastos" Relationship="Model1.TiposGastosSubTiposGastos" FromRole="TiposGastos" ToRole="SubTiposGastos" />
+        </EntityType>
+        <Association Name="TiposGastosSubTiposGastos">
+          <End Type="Model1.TiposGastos" Role="TiposGastos" Multiplicity="1" />
+          <End Type="Model1.SubTiposGastos" Role="SubTiposGastos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposGastos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubTiposGastos">
+              <PropertyRef Name="TiposGastosId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GastosSubTiposGastos">
+          <End Type="Model1.Gastos" Role="Gastos" Multiplicity="*" />
+          <End Type="Model1.SubTiposGastos" Role="SubTiposGastos" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="SubTiposGastos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Gastos">
+              <PropertyRef Name="SubTiposGastosId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VeiculosGastos">
+          <End Type="Model1.Veiculos" Role="Veiculos" Multiplicity="1" />
+          <End Type="Model1.Gastos" Role="Gastos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Veiculos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Gastos">
+              <PropertyRef Name="VeiculosId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VeiculosCategorias">
+          <End Type="Model1.Veiculos" Role="Veiculos" Multiplicity="*" />
+          <End Type="Model1.Categorias" Role="Categorias" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Categorias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Veiculos">
+              <PropertyRef Name="CategoriasId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MarcasVeiculos">
+          <End Type="Model1.Marcas" Role="Marcas" Multiplicity="1" />
+          <End Type="Model1.Veiculos" Role="Veiculos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marcas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Veiculos">
+              <PropertyRef Name="MarcasId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
+    <EntitySetMapping Name="VeiculosSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Veiculos)">
+        <MappingFragment StoreEntitySet="VeiculosSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+          <ScalarProperty Name="AnoFab" ColumnName="AnoFab" />
+          <ScalarProperty Name="AnoMod" ColumnName="AnoMod" />
+          <ScalarProperty Name="Motor" ColumnName="Motor" />
+          <ScalarProperty Name="Cor" ColumnName="Cor" />
+          <ScalarProperty Name="ValorPago" ColumnName="ValorPago" />
+          <ScalarProperty Name="Financiado" ColumnName="Financiado" />
+          <ScalarProperty Name="CategoriasId" ColumnName="CategoriasId" />
+          <ScalarProperty Name="MarcasId" ColumnName="MarcasId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CategoriasSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Categorias)">
+        <MappingFragment StoreEntitySet="CategoriasSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MarcasSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Marcas)">
+        <MappingFragment StoreEntitySet="MarcasSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GastosSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Gastos)">
+        <MappingFragment StoreEntitySet="GastosSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="SubTiposGastosId" ColumnName="SubTiposGastosId" />
+          <ScalarProperty Name="VeiculosId" ColumnName="VeiculosId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubTiposGastosSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.SubTiposGastos)">
+        <MappingFragment StoreEntitySet="SubTiposGastosSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="TiposGastosId" ColumnName="TiposGastosId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TiposGastosSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.TiposGastos)">
+        <MappingFragment StoreEntitySet="TiposGastosSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

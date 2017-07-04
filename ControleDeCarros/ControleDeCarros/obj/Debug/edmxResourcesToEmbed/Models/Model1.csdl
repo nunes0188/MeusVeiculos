@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="VeiculosSet" EntityType="Model1.Veiculos" />
+    <EntitySet Name="CategoriasSet" EntityType="Model1.Categorias" />
+    <EntitySet Name="MarcasSet" EntityType="Model1.Marcas" />
+    <EntitySet Name="GastosSet" EntityType="Model1.Gastos" />
+    <EntitySet Name="SubTiposGastosSet" EntityType="Model1.SubTiposGastos" />
+    <EntitySet Name="TiposGastosSet" EntityType="Model1.TiposGastos" />
+    <AssociationSet Name="TiposGastosSubTiposGastos" Association="Model1.TiposGastosSubTiposGastos">
+      <End Role="TiposGastos" EntitySet="TiposGastosSet" />
+      <End Role="SubTiposGastos" EntitySet="SubTiposGastosSet" />
+    </AssociationSet>
+    <AssociationSet Name="GastosSubTiposGastos" Association="Model1.GastosSubTiposGastos">
+      <End Role="Gastos" EntitySet="GastosSet" />
+      <End Role="SubTiposGastos" EntitySet="SubTiposGastosSet" />
+    </AssociationSet>
+    <AssociationSet Name="VeiculosGastos" Association="Model1.VeiculosGastos">
+      <End Role="Veiculos" EntitySet="VeiculosSet" />
+      <End Role="Gastos" EntitySet="GastosSet" />
+    </AssociationSet>
+    <AssociationSet Name="VeiculosCategorias" Association="Model1.VeiculosCategorias">
+      <End Role="Veiculos" EntitySet="VeiculosSet" />
+      <End Role="Categorias" EntitySet="CategoriasSet" />
+    </AssociationSet>
+    <AssociationSet Name="MarcasVeiculos" Association="Model1.MarcasVeiculos">
+      <End Role="Marcas" EntitySet="MarcasSet" />
+      <End Role="Veiculos" EntitySet="VeiculosSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Veiculos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" Nullable="false" />
+    <Property Name="Modelo" Type="String" Nullable="false" />
+    <Property Name="AnoFab" Type="Int32" Nullable="false" />
+    <Property Name="AnoMod" Type="Int32" Nullable="false" />
+    <Property Name="Motor" Type="String" Nullable="false" />
+    <Property Name="Cor" Type="String" Nullable="false" />
+    <Property Name="ValorPago" Type="Double" Nullable="false" />
+    <Property Name="Financiado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Gastos" Relationship="Model1.VeiculosGastos" FromRole="Veiculos" ToRole="Gastos" />
+    <NavigationProperty Name="Categorias" Relationship="Model1.VeiculosCategorias" FromRole="Veiculos" ToRole="Categorias" />
+    <Property Name="CategoriasId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Marcas" Relationship="Model1.MarcasVeiculos" FromRole="Veiculos" ToRole="Marcas" />
+    <Property Name="MarcasId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Categorias">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descricao" Type="String" Nullable="false" />
+    <NavigationProperty Name="Veiculos" Relationship="Model1.VeiculosCategorias" FromRole="Categorias" ToRole="Veiculos" />
+  </EntityType>
+  <EntityType Name="Marcas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descricao" Type="String" Nullable="false" />
+    <NavigationProperty Name="Veiculos" Relationship="Model1.MarcasVeiculos" FromRole="Marcas" ToRole="Veiculos" />
+  </EntityType>
+  <EntityType Name="Gastos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Valor" Type="Double" Nullable="false" />
+    <Property Name="Data" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="SubTiposGastos" Relationship="Model1.GastosSubTiposGastos" FromRole="Gastos" ToRole="SubTiposGastos" />
+    <Property Name="SubTiposGastosId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Veiculos" Relationship="Model1.VeiculosGastos" FromRole="Gastos" ToRole="Veiculos" />
+    <Property Name="VeiculosId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubTiposGastos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descricao" Type="String" Nullable="false" />
+    <NavigationProperty Name="TiposGastos" Relationship="Model1.TiposGastosSubTiposGastos" FromRole="SubTiposGastos" ToRole="TiposGastos" />
+    <Property Name="TiposGastosId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Gastos" Relationship="Model1.GastosSubTiposGastos" FromRole="SubTiposGastos" ToRole="Gastos" />
+  </EntityType>
+  <EntityType Name="TiposGastos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descricao" Type="String" Nullable="false" />
+    <NavigationProperty Name="SubTiposGastos" Relationship="Model1.TiposGastosSubTiposGastos" FromRole="TiposGastos" ToRole="SubTiposGastos" />
+  </EntityType>
+  <Association Name="TiposGastosSubTiposGastos">
+    <End Type="Model1.TiposGastos" Role="TiposGastos" Multiplicity="1" />
+    <End Type="Model1.SubTiposGastos" Role="SubTiposGastos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TiposGastos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubTiposGastos">
+        <PropertyRef Name="TiposGastosId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GastosSubTiposGastos">
+    <End Type="Model1.Gastos" Role="Gastos" Multiplicity="*" />
+    <End Type="Model1.SubTiposGastos" Role="SubTiposGastos" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="SubTiposGastos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Gastos">
+        <PropertyRef Name="SubTiposGastosId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VeiculosGastos">
+    <End Type="Model1.Veiculos" Role="Veiculos" Multiplicity="1" />
+    <End Type="Model1.Gastos" Role="Gastos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Veiculos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Gastos">
+        <PropertyRef Name="VeiculosId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VeiculosCategorias">
+    <End Type="Model1.Veiculos" Role="Veiculos" Multiplicity="*" />
+    <End Type="Model1.Categorias" Role="Categorias" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Categorias">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Veiculos">
+        <PropertyRef Name="CategoriasId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MarcasVeiculos">
+    <End Type="Model1.Marcas" Role="Marcas" Multiplicity="1" />
+    <End Type="Model1.Veiculos" Role="Veiculos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Marcas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Veiculos">
+        <PropertyRef Name="MarcasId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

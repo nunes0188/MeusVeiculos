@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
+    <EntitySetMapping Name="VeiculosSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Veiculos)">
+        <MappingFragment StoreEntitySet="VeiculosSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+          <ScalarProperty Name="AnoFab" ColumnName="AnoFab" />
+          <ScalarProperty Name="AnoMod" ColumnName="AnoMod" />
+          <ScalarProperty Name="Motor" ColumnName="Motor" />
+          <ScalarProperty Name="Cor" ColumnName="Cor" />
+          <ScalarProperty Name="ValorPago" ColumnName="ValorPago" />
+          <ScalarProperty Name="Financiado" ColumnName="Financiado" />
+          <ScalarProperty Name="CategoriasId" ColumnName="CategoriasId" />
+          <ScalarProperty Name="MarcasId" ColumnName="MarcasId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CategoriasSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Categorias)">
+        <MappingFragment StoreEntitySet="CategoriasSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MarcasSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Marcas)">
+        <MappingFragment StoreEntitySet="MarcasSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GastosSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Gastos)">
+        <MappingFragment StoreEntitySet="GastosSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="SubTiposGastosId" ColumnName="SubTiposGastosId" />
+          <ScalarProperty Name="VeiculosId" ColumnName="VeiculosId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubTiposGastosSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.SubTiposGastos)">
+        <MappingFragment StoreEntitySet="SubTiposGastosSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="TiposGastosId" ColumnName="TiposGastosId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TiposGastosSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.TiposGastos)">
+        <MappingFragment StoreEntitySet="TiposGastosSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
