@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Veículos</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Novo Veículo", "Create")
 </p>
 <table class="table">
     <tr>
@@ -18,28 +18,28 @@
             @Html.DisplayNameFor(model => model.Modelo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AnoFab)
+            Ano de Fabricação
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AnoMod)
+            Ano Modelo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Motor)
+            Motorização
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Cor)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ValorPago)
+            Valor Pago
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Financiado)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Categorias.Descricao)
+            Categoria
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Marcas.Descricao)
+            Marca
         </th>
         <th></th>
     </tr>
@@ -65,7 +65,7 @@
             @Html.DisplayFor(modelItem => item.Cor)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ValorPago)
+            R$@Html.DisplayFor(modelItem => item.ValorPago)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Financiado)
@@ -77,9 +77,9 @@
             @Html.DisplayFor(modelItem => item.Marcas.Descricao)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Consultar", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Excluir", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

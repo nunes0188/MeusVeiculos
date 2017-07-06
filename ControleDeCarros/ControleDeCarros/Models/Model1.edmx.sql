@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 07/04/2017 19:42:33
--- Generated from EDMX file: C:\Users\JoãoPaulo\Source\Repos\AspNetAulas\ControleDeCarros\ControleDeCarros\Models\Model1.edmx
+-- Date Created: 07/04/2017 21:27:36
+-- Generated from EDMX file: C:\Users\Lucas Fernando\Documents\Controle_de_Carros\ControleDeCarros\ControleDeCarros\Models\Model1.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,11 +17,44 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_TiposGastosSubTiposGastos]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[SubTiposGastosSet] DROP CONSTRAINT [FK_TiposGastosSubTiposGastos];
+GO
+IF OBJECT_ID(N'[dbo].[FK_GastosSubTiposGastos]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GastosSet] DROP CONSTRAINT [FK_GastosSubTiposGastos];
+GO
+IF OBJECT_ID(N'[dbo].[FK_VeiculosGastos]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GastosSet] DROP CONSTRAINT [FK_VeiculosGastos];
+GO
+IF OBJECT_ID(N'[dbo].[FK_VeiculosCategorias]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[VeiculosSet] DROP CONSTRAINT [FK_VeiculosCategorias];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MarcasVeiculos]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[VeiculosSet] DROP CONSTRAINT [FK_MarcasVeiculos];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[VeiculosSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[VeiculosSet];
+GO
+IF OBJECT_ID(N'[dbo].[CategoriasSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CategoriasSet];
+GO
+IF OBJECT_ID(N'[dbo].[MarcasSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MarcasSet];
+GO
+IF OBJECT_ID(N'[dbo].[GastosSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[GastosSet];
+GO
+IF OBJECT_ID(N'[dbo].[SubTiposGastosSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[SubTiposGastosSet];
+GO
+IF OBJECT_ID(N'[dbo].[TiposGastosSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TiposGastosSet];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
