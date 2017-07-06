@@ -18,11 +18,33 @@
                 </button>
                 @Html.ActionLink("Meus Veículos", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
+
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        Cadastros
+                        <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+
+                            <li>@Html.ActionLink("Veículo", "Index", "Veiculos")</li>
+                            <li>@Html.ActionLink("Marca", "Index", "Marcas")</li>
+                            <li>@Html.ActionLink("Categoria", "Index", "Categorias")</li>
+                            <li>@Html.ActionLink("Grupo de Gasto", "Index", "TiposGastos")</li>
+                            <li>@Html.ActionLink("Sub Grupo de Gasto", "Index", "SubTiposGastos")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                            Lançamentos
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+
+                            <li>@Html.ActionLink("Gastos", "Index", "Gastos")</li>
+                        </ul>
+                    </li>
+
                 </ul>
             </div>
         </div>
