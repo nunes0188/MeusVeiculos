@@ -10,6 +10,15 @@
     @Html.ActionLink("Novo Veículo", "Create")
 </p>
 <table class="table">
+    @using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <tr>
+        <td colspan="11">
+            Filtrar Marca: <input type="text" name="Marca" id="Marca" placeholder="Digite a marca"/>
+            <button type="submit">Filtrar</button>
+        </td>
+    </tr>
+    }
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Nome)

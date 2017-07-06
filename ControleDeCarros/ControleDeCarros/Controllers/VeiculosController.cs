@@ -15,10 +15,16 @@ namespace ControleDeCarros.Controllers
         private Model1Container db = new Model1Container();
 
         // GET: Veiculos
-        public ActionResult Index()
-        {
+        public ActionResult Index() {
             var veiculosSet = db.VeiculosSet.Include(v => v.Categorias).Include(v => v.Marcas);
             return View(veiculosSet.ToList());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(string Marca) {
+
+            return View(db.VeiculosSet.Where(x => x.Marcas.Descricao.Contains(Marca)).OrderBy(x => x.Nome));
         }
 
         // GET: Veiculos/Details/5

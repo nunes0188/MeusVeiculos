@@ -111,3 +111,4 @@ C:\Users\JoãoPaulo\Source\Repos\MeusVeiculos2\ControleDeCarros\ControleDeCarros
 C:\Users\JoãoPaulo\Source\Repos\MeusVeiculos2\ControleDeCarros\ControleDeCarros\bin\Newtonsoft.Json.xml
 C:\Users\JoãoPaulo\Source\Repos\MeusVeiculos2\ControleDeCarros\ControleDeCarros\obj\Debug\ControleDeCarros.dll
 C:\Users\JoãoPaulo\Source\Repos\MeusVeiculos2\ControleDeCarros\ControleDeCarros\obj\Debug\ControleDeCarros.pdb
+C:\Users\JoãoPaulo\Source\Repos\MeusVeiculos2\ControleDeCarros\ControleDeCarros\obj\Debug\ControleDeCarros.csprojResolveAssemblyReference.cache
